@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import os
+import environ
+
+# GENERAL
+# ------------------------------------------------------------------------------
+env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -97,12 +103,15 @@ WSGI_APPLICATION = 'hnclone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DB_USER = env("POSTGRES_USER", default="postgres")
+DB_PASSWORD = env("POSTGRES_PASSWORD", default="")
+DB_PORT = env("POSTGRES_PORT", default="")
+DB_NAME = env("POSTGRES_NAME", default="pythonic_news")
+DB_HOST = env("POSTGRES_HOST", default="")
+
+DB_CONFIG_URL = f"postgres://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+DATABASES = {"default": env.db("DATABASE_URL", default=DB_CONFIG_URL)}
 
 
 # Password validation

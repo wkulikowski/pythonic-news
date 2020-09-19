@@ -65,6 +65,8 @@ Pygments = "==2.4.2"
 PyYAML = "==3.13"
 websocket_client = "==0.56.0"
 gunicorn = "*"
+django-environ = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.8"

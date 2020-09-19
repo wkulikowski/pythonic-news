@@ -32,6 +32,7 @@ USE_X_FORWARDED_HOST = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    "pythonic-news.herokuapp.com"
 ]
 
 
@@ -144,6 +145,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATIC_ROOT = "/staticfiles/"
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
